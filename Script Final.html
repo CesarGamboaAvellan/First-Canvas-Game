@@ -1,0 +1,346 @@
+<!doctype html>
+<title>Tilesheet with rows</title>
+<div style="border: #2a8c8c solid;">
+<h1 style="text-align: center;">Welcome! Hit me if you can!</h1>
+<h1 style="text-align: right; margin-right: 2%">Player Score: <span id="counter" style="background-color: aqua"></span></h1>
+  <div style="text-align:center">
+    <canvas id="canvas1" width="128" height="128" onclick="myFunction(1)"></canvas>
+<canvas id="canvas2" width="128" height="128" onclick="myFunction(2)"></canvas>
+<canvas id="canvas3" width="128" height="128" onclick="myFunction(3)"></canvas>
+<canvas id="canvas4" width="128" height="128" onclick="myFunction(4)"></canvas>
+<canvas id="canvas5" width="128" height="128" onclick="myFunction(5)"></canvas>
+<canvas id="canvas6" width="128" height="128" onclick="myFunction(6)"></canvas>
+
+<canvas id="canvas7" width="128" height="128" onclick="myFunction(7)"></canvas>
+<canvas id="canvas8" width="128" height="128" onclick="myFunction(8)"></canvas>
+<canvas id="canvas9" width="128" height="128" onclick="myFunction(9)"></canvas>
+  </div>
+</div>
+
+
+
+
+<script>
+const generateRandom = () => {
+    return Math.floor((Math.random() * 9) + 1);
+}
+//Create the monster object
+
+var monster =
+{
+  //The tilesheet image, its size, and the number of columns it has
+  IMAGE: "monsterTileSheet.png",
+  SIZE: 128,
+  COLUMNS: 3,
+  
+  //The numbers of the animation frames and the starting frame
+  numberOfFrames: 5,
+  currentFrame: 1,
+  
+  //Properties of the animation cell's x and
+  //y positions on the tile sheet.
+  //They're 0 when this object first loads
+  sourceX: 0,
+  sourceY: 0,
+  counter: 0,
+  randomNum: 0,
+
+  //The monster's updateAnimation method
+  updateAnimation: function()
+  { document.getElementById("counter").innerHTML = monster.counter;
+    //Find the frame's correct column and row
+    //on the tilesheet
+    this.sourceX 
+      = Math.floor(this.currentFrame % this.COLUMNS) * this.SIZE;
+    this.sourceY 
+      = Math.floor(this.currentFrame / this.COLUMNS) * this.SIZE;
+     
+    if(this.currentFrame < this.numberOfFrames)
+    {
+      //Advance currentFrame by 1
+      this.currentFrame++;
+      if(this.currentFrame !==0){
+        if(this.currentFrame===5){
+        this.currentFrame=1;
+      }
+      }
+    }
+  }
+};
+function myFunction(hitCanvas, x){
+  if(hitCanvas===1 && randomNum ===1){
+    monster.counter++;
+    drawingSurface1.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===2 && randomNum ===2){
+    monster.counter++;
+    drawingSurface2.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===3 && randomNum ===3){
+    monster.counter++;
+    drawingSurface3.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas==4 && randomNum ===4){
+    monster.counter++;
+    drawingSurface4.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===5&& randomNum ===5){
+    monster.counter++;
+    drawingSurface5.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+    }
+
+   if(hitCanvas===6&& randomNum ===6){
+    monster.counter++;
+    drawingSurface6.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===7 && randomNum ===7){
+    monster.counter++;
+    drawingSurface7.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===8 && randomNum ===8){
+    monster.counter++;
+    drawingSurface8.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(hitCanvas===9 && randomNum ===9){
+    monster.counter++;
+    drawingSurface9.drawImage
+  (
+    image, 
+    0, 256, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+document.getElementById("counter").innerHTML = monster.counter || 0;
+  }
+
+
+//Set up the canvas and drawing surface
+var canvas1 = document.getElementById("canvas1");
+var canvas2 = document.getElementById("canvas2");
+var canva3 = document.getElementById("canvas3");
+var canvas4 = document.getElementById("canvas4");
+var canvas5 = document.getElementById("canvas5");
+var canvas6 = document.getElementById("canvas6");
+var canvas7 = document.getElementById("canvas7");
+var canvas8 = document.getElementById("canvas8");
+var canvas9 = document.getElementById("canvas9");
+var ground = document.getElementById("ground");
+var drawingSurface1 = canvas1.getContext("2d");
+var drawingSurface2 = canvas2.getContext("2d");
+var drawingSurface3 = canvas3.getContext("2d");
+var drawingSurface4 = canvas4.getContext("2d");
+var drawingSurface5 = canvas5.getContext("2d");
+var drawingSurface6 = canvas6.getContext("2d");
+var drawingSurface7 = canvas7.getContext("2d");
+var drawingSurface8 = canvas8.getContext("2d");
+var drawingSurface9 = canvas9.getContext("2d");
+
+//Load the animation tile sheet
+var image = new Image();
+image.addEventListener("load", loadHandler, false);
+image.src = monster.IMAGE;
+
+function loadHandler()
+{ 
+  //Start the animation
+  updateAnimation();
+}
+
+function updateAnimation()
+{ 
+  //Set a timer to call updateAnimation every 300 milliseconds
+  setTimeout(updateAnimation,500);
+  
+  //Update the monster's animation frames
+  monster.updateAnimation();
+  
+  //Render the animation
+  render();
+}
+function render()
+{
+  //create math random
+  const randomNumber = generateRandom();
+  this.randomNum = randomNumber;
+  //Clear the canvas of any previous frames
+  drawingSurface1.clearRect(0, 0, canvas1.width, canvas1.height);
+  drawingSurface2.clearRect(0, 0, canvas2.width, canvas2.height);
+  drawingSurface3.clearRect(0, 0, canvas3.width, canvas3.height);
+  drawingSurface4.clearRect(0, 0, canvas4.width, canvas4.height);
+  drawingSurface5.clearRect(0, 0, canvas5.width, canvas5.height);
+  drawingSurface6.clearRect(0, 0, canvas6.width, canvas6.height);
+  drawingSurface7.clearRect(0, 0, canvas7.width, canvas7.height);
+  drawingSurface8.clearRect(0, 0, canvas8.width, canvas8.height);
+  drawingSurface9.clearRect(0, 0, canvas9.width, canvas9.height);
+  //Draw the monster's current animation frame  
+  
+  drawingSurface1.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface2.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface3.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface4.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface5.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface6.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface7.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface8.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  drawingSurface9.drawImage
+  (
+    image, 
+    0, 0, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  if(randomNumber===1){
+    drawingSurface1.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===2){
+    drawingSurface2.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  } 
+  if(randomNumber===3){
+     drawingSurface3.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===4){
+  drawingSurface4.drawImage
+   (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===5){
+  drawingSurface5.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===6){
+  drawingSurface6.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===7){
+  drawingSurface7.drawImage(
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===8){
+  drawingSurface8.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+  }
+  if(randomNumber===9){
+  drawingSurface9.drawImage
+  (
+    image, 
+    monster.sourceX, monster.sourceY, monster.SIZE, monster.SIZE, 
+    0, 0, monster.SIZE, monster.SIZE
+  );
+}
+
+}
+
+</script>
+
