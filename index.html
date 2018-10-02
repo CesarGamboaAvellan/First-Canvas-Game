@@ -10,7 +10,11 @@
     height: auto;
     background: white;
     font-size: 1.3em;">Start Game</button>
+    <div>
+      <h1 id='resultText'></h1>
+    </div>
     <h1 style="text-align: right; margin-right: 2%">Count Down: <span id="countDown" style="background-color: aqua"></span></h1>
+    <h1 style="text-align: right; margin-right: 2%">Goal: <span id="expected" style="background-color: aqua">7</span></h1>
     <h1 style="text-align: right; margin-right: 2%">Player Score: <span id="counter" style="background-color: aqua"></span></h1>
     <div style="text-align:center">
       <canvas id="canvas1" width="128" height="128" onclick="myFunction(1)"></canvas>
@@ -48,8 +52,8 @@
 
       //Properties of the animation cell's x and
       //y positions on the tile sheet.
-      //They're 0 when this object first loads
-      sourceX: 0,
+    //They're 0 when this object first loads
+      sourceX: 0,     
       sourceY: 0,
       counter: 0,
       randomNum: 0,
@@ -74,6 +78,9 @@
               this.currentFrame = 1;
             }
           }
+        }
+        if((monster.countDown === 0) && (monster.counter !== 7)){
+          console.log('you lose');
         }
       }
     };
@@ -203,13 +210,22 @@
     }
 
     function updateAnimation() {
+      let resultText='';
+      //not updating this 
+      document.getElementById("resultText").innerHTML = resultText;
       //Set a timer to call updateAnimation every 300 milliseconds
       // countDown = countDown;
       console.log('this.countDown', monster.countDown);
       monster.countDown--;
       if (monster.countDown === 0) {
-        console.log('countdown', monster.countDown);
+        if(monster.counter !== 7){
+          console.log('thanks you lose!');
+          resultText = 'you lose! try again broda!';
+        }
         monster.countDown = 20;
+      }
+      if(monster.counter >=7 ){
+        resultText = 'Victory!!';
       }
       setTimeout(updateAnimation, 900);
 
