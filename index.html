@@ -212,20 +212,31 @@
     function updateAnimation() {
       let resultText='';
       //not updating this 
-      document.getElementById("resultText").innerHTML = resultText;
       //Set a timer to call updateAnimation every 300 milliseconds
-      // countDown = countDown;
+      // countDown = countDown; 
       console.log('this.countDown', monster.countDown);
       monster.countDown--;
       if (monster.countDown === 0) {
         if(monster.counter !== 7){
           console.log('thanks you lose!');
-          resultText = 'you lose! try again broda!';
-        }
+          resultText = 'you lose! try again!';
+          document.getElementById("resultText").innerHTML = resultText;
+      //     document.getElementById.style = {
+      //       position: 'absolute',
+      // width: '70%',
+      // top: '12%',
+      // height: '82%',
+      // left: '15%',
+      // background-color: 'lightgrey';
+      // text-align: center;"
+      //     }
+      //   }
         monster.countDown = 20;
       }
       if(monster.counter >=7 ){
         resultText = 'Victory!!';
+        resultText = 'you lose! try again!';
+          document.getElementById("resultText").innerHTML = resultText;
       }
       setTimeout(updateAnimation, 900);
 
